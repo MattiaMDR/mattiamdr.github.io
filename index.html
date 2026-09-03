@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mattia — Data Analyst &amp; ML Specialist | E-commerce Forecasting, Inventory &amp; BI</title>
+<meta name="description" content="Data Analyst &amp; ML Specialist. E-commerce forecasting, inventory analytics and business intelligence for retail decisions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181D;
+    --ink-soft:#3C4750;
+    --paper:#EDF0EE;
+    --paper-raise:#E2E7E3;
+    --line:#CBD3CD;
+    --amber:#C1873D;
+    --teal:#2E6E63;
+    --white:#FAFBF9;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--sans);
+    font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:960px; margin:0 auto; padding:0 32px;}
+  section{padding:96px 0;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em; color:var(--ink);}
+  p{max-width:62ch; color:var(--ink-soft);}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:20; background:rgba(237,240,238,.88);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:18px 32px;}
+  .nav-name{font-family:var(--serif); font-size:19px; font-weight:500;}
+  .nav-links{display:flex; gap:28px; font-size:14.5px;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 64px;}
+  .hero .wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;}
+  .hero-kicker{
+    font-size:14.5px; color:var(--teal); font-weight:500; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(38px,4.6vw,58px); line-height:1.08; margin-bottom:22px;
+  }
+  .hero h1 em{font-style:italic; color:var(--teal);}
+  .hero p.lede{font-size:18px; color:var(--ink-soft); margin-bottom:30px;}
+  .hero-meta{
+    display:flex; gap:26px; flex-wrap:wrap; font-size:14px; color:var(--ink-soft);
+    border-top:1px solid var(--line); padding-top:22px;
+  }
+  .hero-meta b{color:var(--ink); font-weight:600; display:block; font-family:var(--serif); font-size:20px;}
+  .cta-row{display:flex; gap:14px; margin-top:8px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:12px 22px; border-radius:3px; font-size:14.5px;
+    text-decoration:none; font-weight:500; transition:transform .15s, background .15s;
+  }
+  .btn-solid{background:var(--ink); color:var(--white);}
+  .btn-solid:hover{background:var(--teal);}
+  .btn-line{border:1px solid var(--ink); color:var(--ink);}
+  .btn-line:hover{background:var(--ink); color:var(--white);}
+
+  /* chart animation */
+  .chart-box{
+    background:var(--white); border:1px solid var(--line); border-radius:4px;
+    padding:24px 20px 18px; box-shadow:0 1px 0 var(--line);
+  }
+  .chart-box .cap{font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); margin-bottom:10px;}
+  svg#chart{width:100%; height:auto; display:block;}
+  .dot{fill:var(--amber); opacity:.85;}
+  .trendline{
+    fill:none; stroke:var(--teal); stroke-width:2.4;
+    stroke-dasharray:520; stroke-dashoffset:520;
+    animation:draw 1.7s .5s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  .pt{
+    fill:var(--teal); opacity:0;
+    animation:fadein .4s .5s forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadein{to{opacity:1;}}
+  @media (prefers-reduced-motion:reduce){
+    .trendline{animation:none; stroke-dashoffset:0;}
+    .pt{animation:none; opacity:1;}
+  }
+
+  /* ---------- About ---------- */
+  .about{background:var(--paper-raise); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about .wrap{display:grid; grid-template-columns:.7fr 1.3fr; gap:56px;}
+  .about h2{font-size:28px; margin-bottom:6px;}
+  .about .role{color:var(--amber); font-size:14.5px; font-weight:500;}
+  .about p{font-size:16.5px; margin-bottom:16px;}
+
+  /* ---------- What I Do ---------- */
+  .do-list{margin-top:36px; border-top:1px solid var(--line);}
+  .do-row{
+    display:grid; grid-template-columns:220px 1fr; gap:32px;
+    padding:22px 0; border-bottom:1px solid var(--line);
+  }
+  .do-row .n{font-family:var(--mono); font-size:13px; color:var(--amber);}
+  .do-row h3{font-size:18px; font-weight:500;}
+  .do-row p{font-size:14.5px; margin-top:4px;}
+
+  /* ---------- Projects ---------- */
+  .proj-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:10px;}
+  section#work p.lede{margin-bottom:44px;}
+  .proj{
+    display:grid; grid-template-columns:1fr auto; gap:24px; align-items:start;
+    padding:30px 0; border-top:1px solid var(--line);
+  }
+  .proj:last-child{border-bottom:1px solid var(--line);}
+  .proj h3{font-size:21px; margin-bottom:8px;}
+  .proj p{font-size:15px;}
+  .stack{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;}
+  .stack span{
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--line); padding:3px 9px; border-radius:20px;
+  }
+  .proj-link{
+    font-size:14px; white-space:nowrap; text-decoration:none; color:var(--teal);
+    font-weight:500; border-bottom:1px solid transparent;
+  }
+  .proj-link:hover{border-bottom-color:var(--teal);}
+
+  /* ---------- Approach ---------- */
+  .approach{background:var(--ink); color:var(--white);}
+  .approach h2{color:var(--white); font-size:28px; margin-bottom:44px;}
+  .approach .wrap > p.lede{color:#B9C2C6; margin-bottom:44px;}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
+  .step .num{font-family:var(--serif); font-size:34px; color:var(--amber); margin-bottom:12px;}
+  .step h3{color:var(--white); font-size:17px; margin-bottom:8px; font-weight:500;}
+  .step p{color:#AAB4B8; font-size:14.5px;}
+
+  /* ---------- Focus + credentials ---------- */
+  .focus .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .focus h2{font-size:24px; margin-bottom:18px;}
+  .focus ul{list-style:none;}
+  .focus li{
+    font-size:15px; color:var(--ink-soft); padding:10px 0; border-bottom:1px solid var(--line);
+  }
+  .cred{border-left:2px solid var(--amber); padding-left:20px;}
+  .cred .item{margin-bottom:20px;}
+  .cred .item b{display:block; font-size:15.5px; color:var(--ink); font-weight:600;}
+  .cred .item span{font-size:13.5px; color:var(--ink-soft);}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--paper-raise); border-top:1px solid var(--line);}
+  .contact h2{font-size:34px; margin-bottom:18px; max-width:16ch;}
+  .contact p.lede{margin-bottom:34px; font-size:17px;}
+
+  footer{padding:34px 0; font-size:13px; color:var(--ink-soft); text-align:center;}
+
+  @media (max-width:760px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .about .wrap{grid-template-columns:1fr;}
+    .focus .wrap{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr; gap:28px;}
+    .do-row{grid-template-columns:1fr; gap:6px;}
+    .proj{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Mattia D.</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="hero-kicker">Data Analyst &amp; ML Specialist</div>
+      <h1>Turning retail data<br>into <em>decisions</em>, not just dashboards.</h1>
+      <p class="lede">I help e-commerce and retail businesses forecast demand, catch inventory risk before it costs money, and see performance clearly — built on 7 years of hands-on e-commerce operations.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="https://www.upwork.com/freelancers/mattiamdr" target="_blank" rel="noopener">Work with me on Upwork</a>
+        <a class="btn btn-line" href="https://www.datascienceportfol.io/MattiaMDR" target="_blank" rel="noopener">See full portfolio</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>7 yrs</b>e-commerce operations</div>
+        <div><b>4.5M+</b>retail records analyzed</div>
+        <div><b>Python · SQL</b>Tableau · Power BI</div>
+      </div>
+      <div class="cta-row" style="margin-top:2px">
+        <a class="proj-link" href="https://public.tableau.com/app/profile/mattia.de.rosa/vizzes" target="_blank" rel="noopener">See dashboards on Tableau Public →</a>
+      </div>
+    </div>
+    <div class="chart-box">
+      <div class="cap">weekly demand — raw signal → forecast</div>
+      <svg id="chart" viewBox="0 0 320 190">
+        <!-- scattered raw points -->
+        <circle class="dot" cx="18" cy="150" r="3"></circle>
+        <circle class="dot" cx="40" cy="70" r="3"></circle>
+        <circle class="dot" cx="62" cy="120" r="3"></circle>
+        <circle class="dot" cx="84" cy="40" r="3"></circle>
+        <circle class="dot" cx="106" cy="100" r="3"></circle>
+        <circle class="dot" cx="128" cy="150" r="3"></circle>
+        <circle class="dot" cx="150" cy="60" r="3"></circle>
+        <circle class="dot" cx="172" cy="95" r="3"></circle>
+        <circle class="dot" cx="194" cy="130" r="3"></circle>
+        <circle class="dot" cx="216" cy="55" r="3"></circle>
+        <circle class="dot" cx="238" cy="90" r="3"></circle>
+        <circle class="dot" cx="260" cy="115" r="3"></circle>
+        <circle class="dot" cx="282" cy="70" r="3"></circle>
+        <circle class="dot" cx="302" cy="100" r="3"></circle>
+        <!-- resolved trend line -->
+        <path class="trendline" d="M18,138 C60,118 90,108 128,96 C170,84 200,88 238,70 C266,58 284,60 302,48"></path>
+        <circle class="pt" cx="18" cy="138" r="3.4" style="animation-delay:1.9s"></circle>
+        <circle class="pt" cx="128" cy="96" r="3.4" style="animation-delay:2s"></circle>
+        <circle class="pt" cx="238" cy="70" r="3.4" style="animation-delay:2.1s"></circle>
+        <circle class="pt" cx="302" cy="48" r="3.4" style="animation-delay:2.2s"></circle>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <div class="role">About</div>
+      <h2>Business first,<br>then the model.</h2>
+    </div>
+    <div>
+      <p>I'm a Data Analyst with over seven years of experience in e-commerce — most of it hands-on, running the sales tracking, inventory monitoring and reporting for a family e-commerce business before moving into data analytics full-time.</p>
+      <p>That background changes how I work: I don't build a forecasting model to show off the model. I start from the business problem — a stockout, a slow mover, a reporting gap — and use Python, SQL, machine learning and BI tools to get to a decision someone can actually act on.</p>
+
+      <div class="do-list">
+        <div class="do-row">
+          <div><span class="n">01</span></div>
+          <div><h3>Demand forecasting &amp; inventory</h3><p>Time-series forecasting, safety stock, reorder points and replenishment planning — built to flag risk before it becomes a stockout or dead stock.</p></div>
+        </div>
+        <div class="do-row">
+          <div><span class="n">02</span></div>
+          <div><h3>Business intelligence</h3><p>Interactive Tableau and Power BI dashboards that turn sales, product and store performance data into something a team actually checks.</p></div>
+        </div>
+        <div class="do-row">
+          <div><span class="n">03</span></div>
+          <div><h3>Data analysis &amp; reporting</h3><p>Cleaning, validation, exploratory analysis and SQL-based reporting — the unglamorous work that makes everything after it trustworthy.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="proj-head">
+      <h2>Selected work</h2>
+    </div>
+    <p class="lede">Full write-ups, methodology and results for every project below.</p>
+
+    <div class="proj">
+      <div>
+        <h3>AI Inventory Optimization System</h3>
+        <p>End-to-end machine learning project for retail demand forecasting, inventory risk analysis and replenishment optimization — compares baseline, XGBoost and deep learning approaches to find the most reliable forecast.</p>
+        <div class="stack"><span>Python</span><span>XGBoost</span><span>Forecasting</span><span>Tableau</span></div>
+      </div>
+      <a class="proj-link" href="https://www.datascienceportfol.io/MattiaMDR/projects/13" target="_blank" rel="noopener">View project →</a>
+    </div>
+
+    <div class="proj">
+      <div>
+        <h3>E-commerce Operations Analytics Decision System</h3>
+        <p>Analytics system evaluating e-commerce operations and performance drivers across 180,519 retail records and 65,752 unique orders, built into a business-decision layer rather than a static report.</p>
+        <div class="stack"><span>Python</span><span>Pandas</span><span>scikit-learn</span><span>Tableau</span></div>
+      </div>
+      <a class="proj-link" href="https://www.datascienceportfol.io/MattiaMDR/projects/14" target="_blank" rel="noopener">View project →</a>
+    </div>
+
+    <div class="proj">
+      <div>
+        <h3>SQL Business Performance Analysis Dashboard</h3>
+        <p>Business performance analysis on the Olist e-commerce dataset — sales, customers, products and operational KPIs, from raw SQL to a Tableau dashboard.</p>
+        <div class="stack"><span>SQL</span><span>Python</span><span>Tableau</span><span>KPIs</span></div>
+      </div>
+      <a class="proj-link" href="https://www.datascienceportfol.io/MattiaMDR/projects/11" target="_blank" rel="noopener">View project →</a>
+    </div>
+
+    <div class="proj">
+      <div>
+        <h3>Sales Strategy Decision Dashboard</h3>
+        <p>Interactive dashboard for pricing, sales-channel and inventory strategy — built to surface trends and performance drivers a trading team can act on weekly.</p>
+        <div class="stack"><span>Python</span><span>Tableau</span><span>Sales Strategy</span></div>
+      </div>
+      <a class="proj-link" href="https://www.datascienceportfol.io/MattiaMDR/projects/12" target="_blank" rel="noopener">View project →</a>
+    </div>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <div class="wrap">
+    <h2>My approach</h2>
+    <p class="lede">I don't build models simply to produce technical outputs — I build them to support a decision.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Understand the problem</h3>
+        <p>Review the available data, the business context and what decision the analysis actually needs to support.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Find what drives it</h3>
+        <p>Clean and validate the data, then identify the performance drivers that actually explain what's happening.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Support the decision</h3>
+        <p>Turn the analysis into a forecast, dashboard or recommendation someone can act on — not just a technical output.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="focus">
+  <div class="wrap">
+    <div>
+      <h2>Current focus</h2>
+      <ul>
+        <li>Machine learning for retail &amp; e-commerce</li>
+        <li>Demand forecasting</li>
+        <li>Inventory optimization</li>
+        <li>Predictive &amp; prescriptive analytics</li>
+        <li>Business intelligence dashboards</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Credentials</h2>
+      <div class="cred">
+        <div class="item">
+          <b>Google Advanced Data Analytics Certificate</b>
+          <span>Coursera, 2024</span>
+        </div>
+        <div class="item">
+          <b>7 years, e-commerce operations</b>
+          <span>Family business — sales, inventory, reporting</span>
+        </div>
+        <div class="item">
+          <b>Full project portfolio</b>
+          <span>datascienceportfol.io/MattiaMDR — write-ups, methodology &amp; results</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Have retail or e-commerce data that needs a clearer answer?</h2>
+    <p class="lede">Tell me what decision you're trying to make, and I'll tell you the most effective way to get there.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="https://www.upwork.com/freelancers/mattiamdr" target="_blank" rel="noopener">Start on Upwork</a>
+      <a class="btn btn-line" href="https://public.tableau.com/app/profile/mattia.de.rosa/vizzes" target="_blank" rel="noopener">See dashboards on Tableau</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Mattia D. — Data Analyst &amp; ML Specialist, Naples, Italy
+</footer>
+
+</body>
+</html>
